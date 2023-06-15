@@ -35,7 +35,7 @@ $ python SRMresizer.py
 
 
 
-## Installation requirement (kalo belum ada) 
+## Installation requirements 
 
 Windows:
 ```sh
