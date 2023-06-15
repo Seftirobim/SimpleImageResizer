@@ -1,8 +1,11 @@
 import cv2
 import os
 import string
+from time import sleep
+from rich.console import Console #for beautiful progress status
 
 #FUNCTIONS
+console = Console()
 
 def drawLine(symbol):
     rows, columns = os.get_terminal_size()
@@ -39,46 +42,63 @@ def print_menu():
 	print(drawLine('='))
 
 #FUNCTION FOR RESIZE ALL SIZE BASED ON USER INPUT
+def scrape_data():
+    sleep(0.1)
+
 def resize_images(input_folder, output_folder, size):
-    for filename in os.listdir(input_folder):
-        if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
-            image_path = os.path.join(input_folder, filename)
-            output_path = os.path.join(output_folder, filename)
-            image = cv2.imread(image_path)
-            resized_image = cv2.resize(image, size,fx = 0.75, fy = 0.75)
-            cv2.imwrite(output_path, resized_image)
-            print(f"{filename} Berhasil di resize")
+    with console.status("[bold green]Memproses gambar...",spinner='aesthetic') as status: #for beautiful progress status
+
+        for filename in os.listdir(input_folder):
+            if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
+                image_path = os.path.join(input_folder, filename)
+                output_path = os.path.join(output_folder, filename)
+                image = cv2.imread(image_path)
+                resized_image = cv2.resize(image, size,fx = 0.75, fy = 0.75)
+                cv2.imwrite(output_path, resized_image)
+                sleep(0.5)
+                console.log(f"[green]Berhasil resize file[/green] {filename}")
+                #print(f"{filename} Berhasil di resize")
+        console.log(f'[bold][red]Selesai!')
 
 #FUNCTION FOR RESIZE ONLY HEIGHT USER INPUT
 def resize_images_height(input_folder, output_folder, height):
-    for filename in os.listdir(input_folder):
-        if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
-            image_path = os.path.join(input_folder, filename)
-            output_path = os.path.join(output_folder, filename)
-            image = cv2.imread(image_path)
-            aspect_ratio = image.shape[1] / image.shape[0]
-            width = int(height * aspect_ratio)
-            resized_image = cv2.resize(image, (width,height),fx = 0.75, fy = 0.75)
-            cv2.imwrite(output_path, resized_image)
-            print(f"{filename} Berhasil di resize")
+    with console.status("[bold green]Memproses gambar...",spinner='aesthetic') as status:
+        for filename in os.listdir(input_folder):
+            if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
+                image_path = os.path.join(input_folder, filename)
+                output_path = os.path.join(output_folder, filename)
+                image = cv2.imread(image_path)
+                aspect_ratio = image.shape[1] / image.shape[0]
+                width = int(height * aspect_ratio)
+                resized_image = cv2.resize(image, (width,height),fx = 0.75, fy = 0.75)
+                cv2.imwrite(output_path, resized_image)
+                #print(f"{filename} Berhasil di resize")
+                sleep(0.5)
+                console.log(f"[green]Berhasil resize file[/green] {filename}")
+        console.log(f'[bold][red]Selesai!')
 
 #FUNCTION FOR RESIZE ONLY WIDTH USER INPUT
 def resize_images_width(input_folder, output_folder, width):
-    for filename in os.listdir(input_folder):
-        if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
-            image_path = os.path.join(input_folder, filename)
-            output_path = os.path.join(output_folder, filename)
-            image = cv2.imread(image_path)
-            aspect_ratio = image.shape[1] / image.shape[0]
-            height = int(width / aspect_ratio)
-            resized_image = cv2.resize(image, (width, height),fx = 0.75, fy = 0.75)
-            cv2.imwrite(output_path, resized_image)
-            print(f"{filename} Berhasil di resize")
+    with console.status("[bold green]Memproses gambar...",spinner='aesthetic') as status:
+        for filename in os.listdir(input_folder):
+            if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
+                image_path = os.path.join(input_folder, filename)
+                output_path = os.path.join(output_folder, filename)
+                image = cv2.imread(image_path)
+                aspect_ratio = image.shape[1] / image.shape[0]
+                height = int(width / aspect_ratio)
+                resized_image = cv2.resize(image, (width, height),fx = 0.75, fy = 0.75)
+                cv2.imwrite(output_path, resized_image)
+                #print(f"{filename} Berhasil di resize")
+                sleep(0.5)
+                console.log(f"[green]Berhasil resize file[/green] {filename}")
+        console.log(f"[bold][red]Selesai!")
 
 current_folder = os.getcwd()
 input_folder = ''.join([current_folder,'/image'])
 output_folder = ''.join([current_folder,'/resize'])
 
+#Running Program
 while True:
 	print_menu()
 	option = ''
@@ -97,7 +117,7 @@ while True:
 		resize_images_height(input_folder, output_folder, height)
 		break
 	elif option == 3:
-		width = int(input("Masukan tinggi dalam pixel: ")) 
+		width = int(input("Masukan lebar dalam pixel: ")) 
 		resize_images_width(input_folder, output_folder, width)
 		break
 	elif option == 4:
