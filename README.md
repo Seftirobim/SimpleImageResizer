@@ -18,19 +18,22 @@ Example Image By :
 ## HOW TO USE
 
 - Install dulu python-nya (kalo belum ada)
+- Masukan dulu semua gambar yang ingin di resize di folder "image". extension yg didukung di script ini : .jpg, .jpeg, .png, .webp (untuk lainnya tambahkan di script)
 
-- Masukan dulu gambar yang ingin di resize di folder "image"
-
-
+![Masukan gambar](https://github.com/Seftirobim/SimpleImageResizer/assets/16395774/f90bf54a-0312-41d7-8d66-cdb5bf06ad43)
 - jalankan script 
-
 ```sh
 $ python SRMresizer.py
 ```
 
 - Pilih menu sesuai kebutuhan dan masukan nilai sesuai pertanyaan
+![How to user](https://github.com/Seftirobim/SimpleImageResizer/assets/16395774/72ebd2f4-797e-47eb-848f-21b1d6713218)
+- Lihat hasilnya di folder "resize"
 
-    
+  ![Hasil Gambar](https://github.com/Seftirobim/SimpleImageResizer/assets/16395774/9a03d3a8-4728-437a-b61e-925ef9a989fc)
+  ![Hasil resize](https://github.com/Seftirobim/SimpleImageResizer/assets/16395774/f2c9f3a1-786c-4589-9169-7f52b2e5a3c2)
+
+
 
 ## Installation requirement (kalo belum ada) 
 
