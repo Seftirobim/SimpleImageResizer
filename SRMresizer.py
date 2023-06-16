@@ -3,16 +3,13 @@ import os
 import string
 from time import sleep
 from rich.console import Console #for beautiful progress status
+from rich.markdown import Markdown
+from rich.table import Table
+from rich.table import box 
+from rich.align import Align 
 
 #FUNCTIONS
 console = Console()
-
-def drawLine(symbol):
-    rows, columns = os.get_terminal_size()
-    i = symbol
-    for x in range(2, rows):
-        i += symbol
-    return i
 
 def allign_center(text):
     rows, columns = os.get_terminal_size()
@@ -20,31 +17,31 @@ def allign_center(text):
     return devided
 
 menu_options = {
-    1: 'Resize Keduanya',
-    2: 'Resize berdasarkan height',
-    3: 'Resize berdasarkan width',
-    4: 'Exit',
+   1: 'Resize Keduanya',
+   2: 'Resize berdasarkan height',
+   3: 'Resize berdasarkan width',
+   4: 'Exit',
 }
+
+title_markdown = """
+# Simple Image Resizer
+"""
+md = Markdown(title_markdown)
 
 def print_menu():
 
-	title = 'Simple Image Resizer '
-	print(drawLine('+'))
-	print(str.center(title, allign_center(title)))
-	print(str.center('github.com/Seftirobim/SimpleImageResizer', allign_center('github.com/Seftirobim/SimpleImageResizer')))
-	print(drawLine('+'))
-	judul_menu = "Silahkan pilih"
+    console.print(md)
+    print(str.center('github.com/Seftirobim/SimpleImageResizer', allign_center('github.com/Seftirobim/SimpleImageResizer')))
 
-	print(str.center(judul_menu, allign_center(judul_menu)))
-	print(drawLine('='))
-	for key in menu_options.keys():
-		print (key, '--', menu_options[key] )
-	print(drawLine('='))
+    table = Table(box=box.SIMPLE_HEAD)
+    table.add_column("No",justify="center")
+    table.add_column("Options",justify="center")
+
+    for key in menu_options.keys():
+        table.add_row(str(key),Align(menu_options[key],'left'))
+    console.print(table)
 
 #FUNCTION FOR RESIZE ALL SIZE BASED ON USER INPUT
-def scrape_data():
-    sleep(0.1)
-
 def resize_images(input_folder, output_folder, size):
     with console.status("[bold green]Memproses gambar...",spinner='aesthetic') as status: #for beautiful progress status
 
@@ -103,7 +100,7 @@ while True:
 	print_menu()
 	option = ''
 	try:
-		option = int(input('Masukan Option: '))
+		option = int(input('Masukan Option (1-4): '))
 	except:
 		print('Inputan salah. Mohon masukan angka...')
 	if option == 1:
@@ -113,11 +110,11 @@ while True:
 		resize_images(input_folder, output_folder, size)
 		break
 	elif option == 2:
-		height = int(input("Masukan tinggi dalam pixel: ")) 
+		height = int(input("Masukan tinggi dalam pixels: ")) 
 		resize_images_height(input_folder, output_folder, height)
 		break
 	elif option == 3:
-		width = int(input("Masukan lebar dalam pixel: ")) 
+		width = int(input("Masukan lebar dalam pixels: ")) 
 		resize_images_width(input_folder, output_folder, width)
 		break
 	elif option == 4:
