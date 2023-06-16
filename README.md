@@ -27,7 +27,8 @@ $ python SRMresizer.py
 ```
 
 - Pilih menu sesuai kebutuhan dan masukan nilai sesuai pertanyaan
-![How to user](https://github.com/Seftirobim/SimpleImageResizer/assets/16395774/72ebd2f4-797e-47eb-848f-21b1d6713218)
+![SC](https://github.com/Seftirobim/SimpleImageResizer/assets/16395774/99c27768-3dc3-470d-9e38-0b6369e39552)
+
 - Lihat hasilnya di folder "resize"
 
   ![Hasil Gambar](https://github.com/Seftirobim/SimpleImageResizer/assets/16395774/9a03d3a8-4728-437a-b61e-925ef9a989fc)
